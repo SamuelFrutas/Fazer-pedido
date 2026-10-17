@@ -1,58 +1,16 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex">
-  <title>Samuel Frutas</title>
-  <style>
-    :root { color-scheme: dark; }
-    * { box-sizing: border-box; }
-    html, body { margin: 0; min-height: 100%; }
-    body {
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      padding: 24px;
-      background: #0b0f0d;
-      color: #fff;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      text-align: center;
-    }
-    main { max-width: 420px; }
-    .logo { font-size: 42px; margin-bottom: 12px; }
-    h1 { margin: 0 0 8px; font-size: 24px; }
-    p { margin: 0; color: #aeb8b1; }
-  </style>
-</head>
-<body>
-  <main>
-    <div class="logo">🍉</div>
-    <h1>Samuel Frutas</h1>
-    <p>Estamos direcionando você...</p>
-  </main>
-  <script>
-    (() => {
-      const agora = new Date();
-      const partes = new Intl.DateTimeFormat('pt-BR', {
-        timeZone: 'America/Sao_Paulo',
-        hour: '2-digit',
-        minute: '2-digit',
-        hour12: false
-      }).formatToParts(agora);
-
-      const hora = Number(partes.find(p => p.type === 'hour')?.value ?? 0);
-
-      // 13:00–19:59 → Agendamentos
-      // 20:00–12:59 → Pedidos
-      const agendamentos = hora >= 13 && hora < 20;
-
-      const destino = agendamentos
-        ? 'https://samuelfrutas.github.io/Samuel-frutas-Agendamentos/preview/preview.html'
-        : 'https://samuelfrutas.github.io/Samuel-frutas-pedido/loja/';
-
-      window.location.replace(destino);
-    })();
-  </script>
-</body>
-</html>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Samuel Frutas</title>
+<style>:root{color-scheme:dark}*{box-sizing:border-box}html,body{margin:0;min-height:100%}body{min-height:100vh;display:grid;place-items:center;padding:24px;background:#0b0f0d;color:#fff;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-align:center}main{max-width:420px}.logo{font-size:42px;margin-bottom:12px}h1{margin:0 0 8px;font-size:24px}p{margin:0;color:#aeb8b1}</style>
+</head><body><main><div class="logo">🍉</div><h1>Samuel Frutas</h1><p id="msg">Estamos verificando o horário...</p></main>
+<script type="module">
+import { db } from './firebase.js';
+import { doc,getDoc } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js';
+const fallback={manutencao:false,dias:Object.fromEntries(Array.from({length:7},(_,i)=>[i,{agendamentos:{link:'agendamentos',inicio:'13:00',fim:'20:00'},pedidos:{link:'pedidos',inicio:'20:00',fim:'13:00'}}]))};
+const links={agendamentos:'https://samuelfrutas.github.io/Samuel-frutas-Agendamentos/preview/preview.html',pedidos:'https://samuelfrutas.github.io/Samuel-frutas-pedido/loja/'};
+function minuto(v){const [h,m]=String(v||'00:00').split(':').map(Number);return h*60+m}
+function dentro(agora,inicio,fim){const a=minuto(agora),i=minuto(inicio),f=minuto(fim);if(i===f)return false;return i<f?a>=i&&a<f:a>=i||a<f}
+function escolher(c){const agora=new Intl.DateTimeFormat('pt-BR',{timeZone:'America/Sao_Paulo',hour:'2-digit',minute:'2-digit',hour12:false}).format(new Date());const dia=Number(new Intl.DateTimeFormat('en-US',{timeZone:'America/Sao_Paulo',weekday:'short'}).format(new Date()).replace(/^Sun.*$/,'0').replace(/^Mon.*$/,'1').replace(/^Tue.*$/,'2').replace(/^Wed.*$/,'3').replace(/^Thu.*$/,'4').replace(/^Fri.*$/,'5').replace(/^Sat.*$/,'6'));const d=c.dias?.[dia]||fallback.dias[dia];for(const chave of ['agendamentos','pedidos']){const r=d?.[chave];if(r&&dentro(agora,r.inicio,r.fim))return links[r.link]||links[chave]}return null}
+async function iniciar(){try{const snap=await getDoc(doc(db,'fazerPedidoConfig','horarios'));const c=snap.exists()?snap.data():fallback;if(c.manutencao){document.getElementById('msg').textContent='Site em manutenção. Voltamos em breve.';return}const destino=escolher(c);if(destino){window.location.replace(destino);return}document.getElementById('msg').textContent='No momento estamos fora do horário de atendimento.'}catch(e){console.error(e);const destino=escolher(fallback);window.location.replace(destino)}}iniciar();
+</script></body></html>
