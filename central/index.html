@@ -3,26 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b0b0b">
+  <link rel="manifest" href="./manifest.webmanifest">
   <title>Central Samuel Frutas</title>
   <style>
     *{box-sizing:border-box}
     body{margin:0;min-height:100vh;background:#0b0b0b;color:#fff;font-family:Arial,sans-serif;display:flex;justify-content:center;padding:18px}
     .wrap{width:100%;max-width:720px}
     h1{text-align:center;font-size:28px;margin:4px 0 6px}
-    .sub{text-align:center;color:#aaa;font-size:14px;margin:0 0 20px}
+    .sub{text-align:center;color:#aaa;font-size:14px;margin:0 0 16px}
+    .install{display:block;width:100%;border:1px solid #777;border-radius:13px;padding:15px 12px;margin:0 0 20px;background:linear-gradient(145deg,#3b3b3b,#222);color:#fff;font-size:15px;font-weight:700;cursor:pointer;box-shadow:0 7px 15px rgba(0,0,0,.55)}
+    .install:active{transform:scale(.98)}
+    .install.hidden{display:none}
     .grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
     .card{background:linear-gradient(145deg,#292929,#151515);border:1px solid #505050;border-radius:18px;padding:24px;min-height:150px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 10px 25px rgba(0,0,0,.8),0 2px 6px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.08)}
-    .card:nth-child(1){border-color:#365b78}
-    .card:nth-child(2){border-color:#69532d}
-    .card:nth-child(3){border-color:#513d70}
-    .card:nth-child(4){border-color:#35614d}
-    .card:nth-child(5){border-color:#68413a}
+    .card:nth-child(1){border-color:#365b78}.card:nth-child(2){border-color:#69532d}.card:nth-child(3){border-color:#513d70}.card:nth-child(4){border-color:#35614d}.card:nth-child(5){border-color:#68413a}
     .name{font-size:19px;font-weight:700;margin-bottom:18px;text-shadow:0 2px 3px #000}
     .buttons{display:flex;gap:11px}
-    a,button{flex:1;border:0;border-radius:11px;padding:14px 9px;text-align:center;text-decoration:none;font-size:15px;font-weight:700;cursor:pointer;box-shadow:0 4px 9px rgba(0,0,0,.45)}
-    a{background:#353535;color:#fff;border:1px solid #555}
+    a{flex:1;border-radius:11px;padding:14px 9px;text-align:center;text-decoration:none;font-size:15px;font-weight:700;box-shadow:0 4px 9px rgba(0,0,0,.45);background:#353535;color:#fff;border:1px solid #555}
     a:hover{background:#474747}
-    .disabled{background:#252525;color:#666;cursor:not-allowed}
     .footer{text-align:center;color:#666;font-size:11px;margin-top:18px}
     @media(max-width:430px){body{padding:12px}.grid{gap:14px}.card{padding:19px;min-height:140px;border-radius:17px}.name{font-size:17px;margin-bottom:15px}a{font-size:13px;padding:13px 6px}}
   </style>
@@ -31,47 +30,35 @@
   <main class="wrap">
     <h1>Central Samuel Frutas</h1>
     <p class="sub">Acesso rápido aos sistemas</p>
+    <button id="installBtn" class="install hidden" type="button">📲 Instalar aplicativo</button>
 
     <section class="grid">
-      <div class="card">
-        <div class="name">📅 Agendamentos</div>
-        <div class="buttons">
-          <a href="https://samuelfrutas.github.io/Samuel-frutas-Agendamentos/preview/preview.html">Site</a>
-          <a href="https://samuelfrutas.github.io/Samuel-frutas-Agendamentos/preview/login.html">Painel</a>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="name">🛒 Pedidos</div>
-        <div class="buttons">
-          <a href="https://samuelfrutas.github.io/Samuel-frutas-pedido/loja/">Site</a>
-          <a href="https://samuelfrutas.github.io/Samuel-frutas-pedido/login/">Painel</a>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="name">🤖 Samuel Frutas Bot</div>
-        <div class="buttons">
-          <a href="https://samuelfrutasbot-production.up.railway.app/admin">Painel</a>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="name">⚙️ Fazer Pedido</div>
-        <div class="buttons">
-          <a href="https://samuelfrutas.github.io/Fazer-pedido/painel/login.html">Painel</a>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="name">🚚 Samuel Entregas</div>
-        <div class="buttons">
-          <a href="https://samuelfrutas.github.io/sistema-entregas-samuel-frutas/">Painel</a>
-        </div>
-      </div>
+      <div class="card"><div class="name">📅 Agendamentos</div><div class="buttons"><a href="https://samuelfrutas.github.io/Samuel-frutas-Agendamentos/preview/preview.html">Site</a><a href="https://samuelfrutas.github.io/Samuel-frutas-Agendamentos/preview/login.html">Painel</a></div></div>
+      <div class="card"><div class="name">🛒 Pedidos</div><div class="buttons"><a href="https://samuelfrutas.github.io/Samuel-frutas-pedido/loja/">Site</a><a href="https://samuelfrutas.github.io/Samuel-frutas-pedido/login/">Painel</a></div></div>
+      <div class="card"><div class="name">🤖 Samuel Frutas Bot</div><div class="buttons"><a href="https://samuelfrutasbot-production.up.railway.app/admin">Painel</a></div></div>
+      <div class="card"><div class="name">⚙️ Fazer Pedido</div><div class="buttons"><a href="https://samuelfrutas.github.io/Fazer-pedido/painel/login.html">Painel</a></div></div>
+      <div class="card"><div class="name">🚚 Samuel Entregas</div><div class="buttons"><a href="https://samuelfrutas.github.io/sistema-entregas-samuel-frutas/">Painel</a></div></div>
     </section>
-
     <div class="footer">Página estática • sem login • sem banco de dados</div>
   </main>
+
+  <script>
+    if ('serviceWorker' in navigator) navigator.serviceWorker.register('./sw.js');
+    let deferredPrompt;
+    const installBtn = document.getElementById('installBtn');
+    window.addEventListener('beforeinstallprompt', event => {
+      event.preventDefault();
+      deferredPrompt = event;
+      installBtn.classList.remove('hidden');
+    });
+    installBtn.addEventListener('click', async () => {
+      if (!deferredPrompt) return;
+      deferredPrompt.prompt();
+      await deferredPrompt.userChoice;
+      deferredPrompt = null;
+      installBtn.classList.add('hidden');
+    });
+    window.addEventListener('appinstalled', () => installBtn.classList.add('hidden'));
+  </script>
 </body>
 </html>
