@@ -1,24 +1,72 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Samuel Frutas • Central</title>
-<style>
-:root{color-scheme:dark}*{box-sizing:border-box}body{margin:0;min-height:100vh;background:#080c0a;color:#fff;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;padding:14px}.wrap{width:min(760px,100%);margin:auto}.head{text-align:center;margin:4px 0 14px}.logo{font-size:30px}.head h1{margin:2px 0;font-size:22px}.head p{margin:0;color:#8f9a93;font-size:12px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.card{background:#111713;border:1px solid #26332b;border-radius:14px;padding:12px}.top{display:flex;align-items:center;gap:9px;margin-bottom:10px}.icon{font-size:22px}.card h2{margin:0;font-size:16px}.buttons{display:grid;grid-template-columns:1fr 1fr;gap:7px}.btn{display:flex;align-items:center;justify-content:center;min-height:38px;padding:8px;border-radius:9px;text-decoration:none;font-size:13px;font-weight:750;border:1px solid #344139;background:#1a221d;color:#fff}.btn.primary{background:#36b86b;border-color:#36b86b;color:#06110a}.btn.full{grid-column:1/-1}.btn.disabled{opacity:.4;pointer-events:none}.foot{text-align:center;color:#626c66;font-size:10px;margin-top:10px}@media(max-width:520px){.grid{grid-template-columns:1fr 1fr}.card{padding:10px}.buttons{grid-template-columns:1fr}.btn.full{grid-column:auto}.head{margin-bottom:10px}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Central Samuel Frutas</title>
+  <style>
+    *{box-sizing:border-box}
+    body{margin:0;min-height:100vh;background:#111;color:#fff;font-family:Arial,sans-serif;display:flex;justify-content:center;padding:18px}
+    .wrap{width:100%;max-width:620px}
+    h1{text-align:center;font-size:24px;margin:4px 0 6px}
+    .sub{text-align:center;color:#aaa;font-size:13px;margin:0 0 16px}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .card{background:#1b1b1b;border:1px solid #303030;border-radius:12px;padding:12px}
+    .name{font-size:15px;font-weight:700;margin-bottom:9px}
+    .buttons{display:flex;gap:7px}
+    a,button{flex:1;border:0;border-radius:8px;padding:10px 7px;text-align:center;text-decoration:none;font-size:13px;font-weight:700;cursor:pointer}
+    a{background:#2b2b2b;color:#fff}
+    a:hover{background:#383838}
+    .disabled{background:#252525;color:#666;cursor:not-allowed}
+    .footer{text-align:center;color:#666;font-size:11px;margin-top:14px}
+    @media(max-width:430px){body{padding:12px}.grid{gap:8px}.card{padding:10px}.name{font-size:14px}a{font-size:12px;padding:9px 5px}}
+  </style>
 </head>
 <body>
-<div class="wrap">
-<header class="head"><div class="logo">🍉</div><h1>Central Samuel Frutas</h1><p>Acesso rápido</p></header>
-<main class="grid">
-<section class="card"><div class="top"><div class="icon">📅</div><h2>Agendamentos</h2></div><div class="buttons"><a class="btn primary" href="https://samuelfrutas.github.io/Samuel-frutas-Agendamentos/preview/preview.html">Site</a><a class="btn" href="https://samuelfrutas.github.io/Samuel-frutas-Agendamentos/preview/login.html">Painel</a></div></section>
-<section class="card"><div class="top"><div class="icon">🛒</div><h2>Pedidos</h2></div><div class="buttons"><a class="btn primary" href="https://samuelfrutas.github.io/Samuel-frutas-pedido/loja/">Site</a><a class="btn" href="https://samuelfrutas.github.io/Samuel-frutas-pedido/login/">Painel</a></div></section>
-<section class="card"><div class="top"><div class="icon">🤖</div><h2>Frutas Bot</h2></div><div class="buttons"><a class="btn primary full disabled" href="#">Painel</a></div></section>
-<section class="card"><div class="top"><div class="icon">⏱️</div><h2>Fazer Pedido</h2></div><div class="buttons"><a class="btn primary full" href="https://samuelfrutas.github.io/Fazer-pedido/painel/login.html">Painel</a></div></section>
-<section class="card"><div class="top"><div class="icon">🚚</div><h2>Samuel Entregas</h2></div><div class="buttons"><a class="btn primary full" href="https://samuelfrutas.github.io/sistema-entregas-samuel-frutas/dashboard/">Painel</a></div></section>
-</main>
-<div class="foot">Página estática • sem login • sem banco de dados</div>
-</div>
+  <main class="wrap">
+    <h1>Central Samuel Frutas</h1>
+    <p class="sub">Acesso rápido aos sistemas</p>
+
+    <section class="grid">
+      <div class="card">
+        <div class="name">📅 Agendamentos</div>
+        <div class="buttons">
+          <a href="https://samuelfrutas.github.io/Samuel-frutas-Agendamentos/preview/preview.html">Site</a>
+          <a href="https://samuelfrutas.github.io/Samuel-frutas-Agendamentos/preview/login.html">Painel</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="name">🛒 Pedidos</div>
+        <div class="buttons">
+          <a href="https://samuelfrutas.github.io/Samuel-frutas-pedido/loja/">Site</a>
+          <a href="https://samuelfrutas.github.io/Samuel-frutas-pedido/login/">Painel</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="name">🤖 Samuel Frutas Bot</div>
+        <div class="buttons">
+          <a href="https://samuelfrutasbot-production.up.railway.app/admin">Painel</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="name">⚙️ Fazer Pedido</div>
+        <div class="buttons">
+          <a href="https://samuelfrutas.github.io/Fazer-pedido/painel/login.html">Painel</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="name">🚚 Samuel Entregas</div>
+        <div class="buttons">
+          <a href="https://samuelfrutas.github.io/sistema-entregas-samuel-frutas/">Painel</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">Página estática • sem login • sem banco de dados</div>
+  </main>
 </body>
 </html>
